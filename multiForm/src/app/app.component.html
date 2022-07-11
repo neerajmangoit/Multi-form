@@ -1,0 +1,68 @@
+<app-header></app-header>
+
+<!--------------------------------Template eform------------------------------>
+
+<button type="button" class="btn btn-warning m-2" data-bs-toggle="modal" data-bs-target="#template">
+    Template Form
+</button>
+
+<div class="modal" id="template">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Registration Form</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <app-forms></app-forms>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-------------------------------Reactive Forms--------------------------------------------->
+
+
+<button type="button" class="btn btn-warning m-2" data-bs-toggle="modal" data-bs-target="#reactive">
+    Reactive form
+</button>
+
+<div class="modal" id="reactive">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Registration Form</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+  
+        <!-- Modal body -->
+        <div class="modal-body">
+          <app-reactive-form></app-reactive-form>
+        </div>
+  
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+
+  <router-outlet>
+    
+  </router-outlet>
+

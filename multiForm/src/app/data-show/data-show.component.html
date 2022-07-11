@@ -1,0 +1,65 @@
+<div class="container mt-3">
+  <h2>User data</h2>
+  <table class="table table-dark">
+    <thead>
+      <tr>
+        <th>Profile</th>
+        <th>name</th>
+        <th>email</th>
+        <th>gender</th>
+        <th>dob</th>
+        <th>phone</th>
+        <th>Qualification</th>
+        <th>Profession</th>
+        <th>Description</th>
+        <th>Hobbies</th>
+        <th>Edit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let userData of servisceData">
+        <td>
+          <img src="assets/images/profile.png" alt="logo" style="width:42px;" class="rounded-pill">
+        </td>
+        <td>
+          {{ userData.data.firstForm.name }}
+        </td>
+        <td>
+          {{ userData.data.firstForm.email }}
+        </td>
+        <td>
+          {{ userData.data.firstForm.gender }}
+        </td>
+        <td>
+          {{ userData.data.firstForm.dob }}
+        </td>
+        <td>
+          {{ userData.data.secondForm.phone }}
+        </td>
+        <td>
+          <div *ngFor="let quali of userData.data.thirdForm.qualification">
+            {{ quali.item_text }},
+          </div>
+        </td>
+        <td>
+          {{ userData.data.thirdForm.profession }}
+        </td>
+        <td>
+          {{ userData.data.thirdForm.description }}
+        </td>
+        <td *ngFor="let sel">
+          {{ userData.data.secondForm.hobby }}
+        </td>
+        <td>
+          <button
+            class="btn btn-primary"
+            routerLink="/edit"
+            (click)="onEdit(userData.id)"
+          >
+            edit
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

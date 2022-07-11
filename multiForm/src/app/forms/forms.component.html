@@ -1,0 +1,303 @@
+<form class="" name="myForm" (ngSubmit)="onSubmit(form)" #form="ngForm">
+  <mat-horizontal-stepper labelPosition="bottom" [linear]="true">
+    <mat-step label="Step 1" ngModelGroup="firstForm">
+      <!-- ------------Name field ------------>
+
+      <div class="mb-3 mt-3">
+        <label for="name">Name:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          placeholder="Enter name"
+          name="name"
+          ngModel
+          required
+          #name="ngModel"
+        />
+      </div>
+      <span class="text-danger" *ngIf="name.touched && name.errors?.required">
+        Name is required
+      </span>
+
+      <!-------------Email filed------------->
+
+      <div class="mb-3 mt-3">
+        <label for="email">Email:</label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          placeholder="Enter email"
+          name="email"
+          ngModel
+          required
+          #email="ngModel"
+        />
+      </div>
+      <span class="text-danger" *ngIf="email.touched && email.errors?.required">
+        Email is required
+      </span>
+
+      <!-------------Gender filed------------->
+
+      <div>
+        <label for="Gender">Gender:</label>
+      </div>
+
+      <div class="form-check">
+        <input
+          type="radio"
+          class="form-check-input"
+          name="gender"
+          id="radio1"
+          value="Male"
+          checked
+          ngModel
+        />Male
+        <label class="form-check-label" for="radio1"></label>
+      </div>
+      <div class="form-check">
+        <input
+          type="radio"
+          class="form-check-input"
+          name="gender"
+          id="radio2"
+          value="Female"
+          ngModel
+        />Female
+        <label class="form-check-label" for="radio2"></label>
+      </div>
+
+      <!-------------Date of birth filed------------->
+
+      <div class="col-5 mb-3 mt-3">
+        <label for="name">Date of birth:</label>
+        <input
+          class="form-control"
+          type="date"
+          name="dob"
+          ngModel
+          required
+          #dob="ngModel"
+        />
+      </div>
+      <span class="text-danger" *ngIf="dob.touched && dob.errors?.required">
+        Date of birth is required
+      </span>
+      <div class="offset-5">
+        <button
+          type="button"
+          class="btn btn-danger mx-3"
+          mat-button
+          matStepperNext
+        >
+          Next
+        </button>
+      </div>
+    </mat-step>
+
+    <!-----------------------------------Second step----------------------------------->
+
+    <mat-step label="Step 2" ngModelGroup="secondForm">
+      <!-------------Profile Picture------------->
+
+      <div class="col-5 mb-3 mt-3">
+        <label for="name">Profile picture:</label>
+        <input
+          type="file"
+          class="form-control"
+          name="profile"
+          ngModel
+          required
+          #profile="ngModel"
+        />
+      </div>
+      <span
+        class="text-danger"
+        *ngIf="profile.touched && profile.errors?.required"
+      >
+        Profile picture is required
+      </span>
+
+      <!-------------Hobbies filed------------->
+
+      <div class="form-control mb-3 mt-3">
+        <div class="d-inline-flex mx-2">
+          <label for="hobbies">Hobbies:</label>
+        </div>
+        <div
+          class="form-check d-inline-flex mx-2"
+          *ngFor="let hobby of hobbies"
+          ngModelGroup="hobby"
+        >
+          <input
+            type="checkbox"
+            class="form-check-input"
+            id="hobbies"
+            name="{{ hobby.name }}"
+            [(ngModel)]="hobby.selected"
+          />
+          <label class="form-check-label" for="check1">{{ hobby.name }}</label>
+        </div>
+      </div>
+
+      <!-------------Phone filed------------->
+
+      <div class="mb-3 mt-3">
+        <label for="phone">Phone:</label>
+        <input
+          type="phone"
+          class="form-control"
+          placeholder="123-123-1234"
+          name="phone"
+          id="phone"
+          pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+          ngModel
+          required
+          #phone="ngModel"
+        />
+      </div>
+      <span class="text-danger" *ngIf="phone.touched && phone.errors?.required">
+        Phone is required
+      </span>
+
+      <div class="offset-4">
+        <button
+          type="button"
+          class="btn btn-warning"
+          mat-button
+          matStepperPrevious
+        >
+          Previous
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger mx-3"
+          mat-button
+          matStepperNext
+        >
+          Next
+        </button>
+      </div>
+    </mat-step>
+
+    <!--------------------------------Third step------------------------------------>
+
+    <mat-step label="Step 3" ngModelGroup="thirdForm">
+      <!-------------Qualification filed------------->
+
+      <label for="Qualification">Qualification:</label>
+      <div class="mb-3 mt-3">
+        <ng-multiselect-dropdown
+          [settings]="dropdownSettings"
+          [data]="dropdownList"
+          ngModel
+          required
+          name="qualification"
+        >
+        </ng-multiselect-dropdown>
+      </div>
+
+      <!-------------Profession filed------------->
+
+      <div class="mb-3 mt-3">
+        <label for="profession" class="form-label">Profession:</label>
+        <select
+          class="form-select"
+          id="profession"
+          name="profession"
+          ngModel
+          required
+          #profession="ngModel"
+        >
+          <option>Software engineer</option>
+          <option>Doctor</option>
+          <option>Fire fighter</option>
+          <option>Accountant</option>
+          <option>Sales man</option>
+          <option>Teacher</option>
+        </select>
+      </div>
+      <span
+        class="text-danger"
+        *ngIf="profession.touched && profession.errors?.required"
+      >
+        Profession is required
+      </span>
+
+      <!-------------description filed------------->
+
+      <div class="mb-3 mt-3">
+        <label for="description">Short Description:</label>
+        <textarea
+          name="description"
+          id="description"
+          cols="70"
+          class="mt-3"
+          placeholder="Write a short description about yourself"
+          rows="3"
+          ngModel
+          required
+          #description="ngModel"
+        ></textarea>
+      </div>
+      <span
+        class="text-danger"
+        *ngIf="description.touched && description.errors?.required"
+      >
+        Description is required
+      </span>
+
+      <section *ngFor="let person of persons; let i = index">
+        <!-- input fields inside the *ngFor -->
+        <div class="col-4 d-inline-block">
+          <label>Name</label>
+          <input
+            class="form-control"
+            type="text"
+            [(ngModel)]="person.name"
+            name="name{{ i }}"
+          />
+        </div>
+        <div class="col-3 d-inline-block mx-4 my-3">
+          <label>Phone</label>
+          <input
+            type="phone"
+            class="form-control"
+            [(ngModel)]="person.phone"
+            name="phone{{ i }}"
+            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+          />
+        </div>
+        <button type="button" class="btn btn-danger" (click)="removePerson(i)">
+          Remove
+        </button>
+      </section>
+      <button type="button" class="btn btn-primary mb-2" (click)="addPerson()">
+        Add Contact person
+      </button>
+
+      <div class="offset-5">
+        <button
+          type="button"
+          class="btn btn-warning"
+          mat-button
+          matStepperPrevious
+        >
+          Previous
+        </button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+  <div class="form-group">
+    <input
+      type="submit"
+      [disabled]="form.invalid"
+      name="submit"
+      id="submit"
+      value="Sign up"
+      class="btn btn-primary align-right"
+    />
+  </div>
+</form>
