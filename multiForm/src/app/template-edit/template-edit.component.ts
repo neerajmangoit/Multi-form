@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { FormsModule, FormGroup }   from '@angular/forms';
 import { IDropdownSettings, } from 'ng-multiselect-dropdown';
@@ -12,65 +12,105 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class TemplateEditComponent implements OnInit {
 
-  constructor(private _formDataService: FormDataService,
-    private router: Router, private route: ActivatedRoute) { }
+  constructor(
+    private _formDataService: FormDataService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
   
-  servisceData = [];
+  @ViewChild('form') form:NgForm;
+
+
+  servisceData;
   userInfoData=[];
   formId;
 
+
   dropdownList = [];
-  dropdownSettings:IDropdownSettings={};
+  dropdownSettings: IDropdownSettings = {};
 
   hobbies = [
     {
       name: 'Video Games',
-      selected: false
+      selected: false,
     },
     {
       name: 'Swimming',
-      selected: false
+      selected: false,
     },
     {
       name: 'Travelling',
-      selected: false
+      selected: false,
     },
     {
       name: 'Hiking',
-      selected: false
+      selected: false,
     },
     {
       name: 'Sports',
-      selected: false
-    }
+      selected: false,
+    },
   ];
 
+  hobbySelect() {
+    const selectedHobby = [];
+    for (let hobby of this.hobbies) {
+      if (this.form.value.secondForm.hobbySelector[hobby.name]) {
+        selectedHobby.push(hobby.name);
+      }      
+    }
+    return selectedHobby;
+  }
+
+
   ngOnInit(): void {
+
     this.servisceData = this._formDataService.userData;
     
+    
+    // console.log(this.servisceData.data);
+
+
+
     this.formId = this._formDataService.dataId;
 
     this.userInfoData = this._formDataService.userData.find(x => x.id === this.formId);
 
+    console.log(this.userInfoData);
 
     this.dropdownList = [
       { item_id: 1, item_text: 'Phd' },
       { item_id: 2, item_text: 'Masters' },
       { item_id: 3, item_text: 'Bachelors' },
       { item_id: 4, item_text: 'Higher Secondary' },
-      { item_id: 5, item_text: 'Schooling' }
+      { item_id: 5, item_text: 'Schooling' },
     ];
     this.dropdownSettings = {
       idField: 'item_id',
       textField: 'item_text',
     };
+    console.log(this.userInfoData['data'].thirdForm.contactPerson.name0);
+
+    let pLength = Object.keys(this.userInfoData['data'].thirdForm.contactPerson).length
+    for (let index = 0; index < pLength/2-1; index++) {
+      this.addPerson();
+    }
+
+    for (const person of this.persons) {
+      let i = 0;
+      person.name = this.userInfoData['data'].thirdForm.contactPerson['name' + i]
+      person.phone = this.userInfoData['data'].thirdForm.contactPerson['phone' + i]
+      i++;
+    }
   }
 
-  public persons: any[] = [{
-    id: '',
-    name: '',
-    phone: '',
-  }];
+  public persons: any[] = [
+    {
+      id: '',
+      name: '',
+      phone: '',
+    },
+  ];
 
   addPerson() {
     this.persons.push({
@@ -79,18 +119,18 @@ export class TemplateEditComponent implements OnInit {
       phone: '',
     });
   }
-  
+
   removePerson(i: number) {
     this.persons.splice(i, 1);
   }
 
-
   onSubmit(form: NgForm) {
     this._formDataService.getData(form.value);
-    this.router.navigate(['/show'],{ relativeTo:this.route })     
+    this.router.navigate(['/show'], { relativeTo: this.route });
+    
+    
+    
   }
 
-  
-  onSelected() {
-  }
+  onSelected() {}
 }

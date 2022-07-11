@@ -42,7 +42,10 @@ export class ReactiveFormComponent implements OnInit {
         'qualification': new FormControl(null),
         'profession': new FormControl(null),
         'description': new FormControl(null, [Validators.required ]),
-        'contactPerson': new FormControl()
+        'contactPerson': new FormArray([
+          new FormControl(),
+          new FormControl()
+        ])
       })
     });
   
@@ -92,9 +95,9 @@ export class ReactiveFormComponent implements OnInit {
   ];
 
   hobbySelect(event) {
-    const selectedHobby = [];
+    const selectedHobby = this.myform.get('secondForm.hobbies') as FormArray;
     if (event.target.checked) {
-      selectedHobby.push(event.target.value);
+      selectedHobby.push(new FormControl(event.target.value));
     }
     else {
       
@@ -128,7 +131,7 @@ export class ReactiveFormComponent implements OnInit {
   onSubmit() {
     this._formDataService.getData(this.myform.value);
     console.log(this.myform.value);
-    this.router.navigate(['/show'],{ relativeTo:this.route })    
+    this.router.navigate(['/showReactive'],{ relativeTo:this.route })    
   }
 
 

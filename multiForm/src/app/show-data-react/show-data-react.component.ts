@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormDataService } from '../form-data.service';
 
 @Component({
-  selector: 'app-data-show',
-  templateUrl: './data-show.component.html',
-  styleUrls: ['./data-show.component.css'],
+  selector: 'app-show-data-react',
+  templateUrl: './show-data-react.component.html',
+  styleUrls: ['./show-data-react.component.css']
 })
-export class DataShowComponent implements OnInit {
+export class ShowDataReactComponent implements OnInit {
+
   constructor(private _formDataService: FormDataService,
     private userInfo: FormDataService) {}
   
@@ -31,7 +32,5 @@ export class DataShowComponent implements OnInit {
     // typeof(this._formDataService['data'].thirdForm.contactPerson)
 
   }
-
-  
 
 }

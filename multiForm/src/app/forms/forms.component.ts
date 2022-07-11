@@ -50,7 +50,7 @@ export class FormsComponent implements OnInit {
   hobbySelect() {
     const selectedHobby = [];
     for (let hobby of this.hobbies) {
-      if (this.form.value.secondForm[hobby.name]) {
+      if (this.form.value.secondForm.hobbySelector[hobby.name]) {
         selectedHobby.push(hobby.name);
       }      
     }
@@ -95,7 +95,7 @@ export class FormsComponent implements OnInit {
   onSubmit(form: NgForm) {
     this._formDataService.getData(form.value);
     this.router.navigate(['/show'], { relativeTo: this.route });
-    console.log(this.hobbySelect());
+    console.log(form.value.firstForm.name);
     
   }
 

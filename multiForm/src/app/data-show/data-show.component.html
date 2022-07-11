@@ -13,6 +13,7 @@
         <th>Profession</th>
         <th>Description</th>
         <th>Hobbies</th>
+        <th  colspan="2" class="table-active">content persoon</th>
         <th>Edit</th>
       </tr>
     </thead>
@@ -47,8 +48,28 @@
         <td>
           {{ userData.data.thirdForm.description }}
         </td>
-        <td *ngFor="let sel">
-          {{ userData.data.secondForm.hobby }}
+        <td>
+          <div *ngFor="let hobbies of userData.data.secondForm.hobbySelector |keyvalue">
+            <div *ngIf="hobbies.value">
+
+              {{ hobbies.key }} 
+            </div>
+          </div>
+        </td>
+        <td>
+
+            <div *ngFor="let contact of  userData.data.thirdForm.contactPerson | keyvalue">
+              <div *ngIf="">
+
+                {{ contact.value  }}
+              </div>
+            </div>
+            
+        </td>
+        <td>
+          <div *ngFor="let contact of  userData.data.thirdForm.contactPerson | keyvalue">
+            {{ contact.value }}
+          </div>
         </td>
         <td>
           <button

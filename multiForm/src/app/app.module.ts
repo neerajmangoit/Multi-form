@@ -13,11 +13,13 @@ import { DataShowComponent } from './data-show/data-show.component';
 import { EditFormComponent } from './edit-form/edit-form.component';
 import { Routes, RouterModule } from '@angular/router';
 import { TemplateEditComponent } from './template-edit/template-edit.component';
+import { TypeCheckPipe } from './type-check.pipe';
+import { ShowDataReactComponent } from './show-data-react/show-data-react.component';
 
 const appRoutes:Routes = [
-  { path:'edit', component: EditFormComponent },
+  { path:'edit', component: TemplateEditComponent },
   { path:'show', component: DataShowComponent },
-
+  { path:'showReactive', component: ShowDataReactComponent },
 ]
 
 
@@ -29,7 +31,9 @@ const appRoutes:Routes = [
     ReactiveFormComponent,
     DataShowComponent,
     EditFormComponent,
-    TemplateEditComponent
+    TemplateEditComponent,
+    TypeCheckPipe,
+    ShowDataReactComponent
   ],
   imports: [
     BrowserModule,

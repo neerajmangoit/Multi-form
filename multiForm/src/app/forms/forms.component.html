@@ -1,6 +1,6 @@
 <form class="" name="myForm" (ngSubmit)="onSubmit(form)" #form="ngForm">
   <mat-horizontal-stepper labelPosition="bottom" [linear]="true">
-    <mat-step label="Step 1" ngModelGroup="firstForm">
+    <mat-step label="Step 1" ngModelGroup="firstForm" #firstForm="ngModelGroup">
       <!-- ------------Name field ------------>
 
       <div class="mb-3 mt-3">
@@ -13,6 +13,7 @@
           name="name"
           ngModel
           required
+          value="{{ name }}"
           #name="ngModel"
         />
       </div>
@@ -46,27 +47,29 @@
       </div>
 
       <div class="form-check">
-        <input
-          type="radio"
-          class="form-check-input"
-          name="gender"
-          id="radio1"
-          value="Male"
-          checked
-          ngModel
-        />Male
-        <label class="form-check-label" for="radio1"></label>
+        <label class="form-check-label" for="radio1">
+          <input
+            type="radio"
+            class="form-check-input"
+            name="gender"
+            id="radio1"
+            value="Male"
+            checked
+            ngModel
+          />Male</label
+        >
       </div>
       <div class="form-check">
-        <input
-          type="radio"
-          class="form-check-input"
-          name="gender"
-          id="radio2"
-          value="Female"
-          ngModel
-        />Female
-        <label class="form-check-label" for="radio2"></label>
+        <label class="form-check-label" for="radio2">
+          <input
+            type="radio"
+            class="form-check-input"
+            name="gender"
+            id="radio2"
+            value="Female"
+            ngModel
+          />Female
+        </label>
       </div>
 
       <!-------------Date of birth filed------------->
@@ -91,6 +94,7 @@
           class="btn btn-danger mx-3"
           mat-button
           matStepperNext
+          [disabled]="!firstForm.valid"
         >
           Next
         </button>
@@ -99,7 +103,11 @@
 
     <!-----------------------------------Second step----------------------------------->
 
-    <mat-step label="Step 2" ngModelGroup="secondForm">
+    <mat-step
+      label="Step 2"
+      ngModelGroup="secondForm"
+      #secondForm="ngModelGroup"
+    >
       <!-------------Profile Picture------------->
 
       <div class="col-5 mb-3 mt-3">
@@ -129,7 +137,7 @@
         <div
           class="form-check d-inline-flex mx-2"
           *ngFor="let hobby of hobbies"
-          ngModelGroup="hobby"
+          ngModelGroup="hobbySelector"
         >
           <input
             type="checkbox"
@@ -176,6 +184,7 @@
           class="btn btn-danger mx-3"
           mat-button
           matStepperNext
+          [disabled]="!secondForm.valid"
         >
           Next
         </button>
@@ -249,7 +258,7 @@
         Description is required
       </span>
 
-      <section *ngFor="let person of persons; let i = index">
+      <section *ngFor="let person of persons; let i = index"  ngModelGroup="contactPerson">
         <!-- input fields inside the *ngFor -->
         <div class="col-4 d-inline-block">
           <label>Name</label>
@@ -293,7 +302,6 @@
   <div class="form-group">
     <input
       type="submit"
-      [disabled]="form.invalid"
       name="submit"
       id="submit"
       value="Sign up"
@@ -301,3 +309,4 @@
     />
   </div>
 </form>
+<!-- [disabled]="form.invalid" -->

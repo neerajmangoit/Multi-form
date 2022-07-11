@@ -64,9 +64,6 @@ export class EditFormComponent implements OnInit {
     });
 
 
-    
-  
-
     this.dropdownList = [
       { item_id: 1, item_text: 'Phd' },
       { item_id: 2, item_text: 'Masters' },

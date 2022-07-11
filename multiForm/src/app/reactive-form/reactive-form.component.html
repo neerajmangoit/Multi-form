@@ -127,13 +127,14 @@
 
       <!-------------Hobbies filed------------->
 
-      <div class="form-control mb-3 mt-3" formArrayName="hobbies">
+      <div class="form-control mb-3 mt-3">
         <div class="d-inline-flex mx-2">
           <label for="hobbies">Hobbies:</label>
         </div>
         <div
           class="form-check d-inline-flex mx-2"
           *ngFor="let hobby of hobbies; let i = index"
+          formGroupName="hobbies"
         >
         <input
             type="checkbox"
@@ -273,9 +274,12 @@
 
       <section *ngFor="let person of persons; let i = index">
         <!-- input fields inside the *ngFor -->
-        <div class="col-4 d-inline-block">
+        <div class="col-4 d-inline-block" formArrayName="contactPerson">
           <label>Name</label>
-          <input class="form-control" type="text" name="name{{ i }}" />
+          <input class="form-control" 
+          type="text" 
+          name="name{{ i }}" 
+          />
         </div>
         <div class="col-3 d-inline-block mx-4 my-3">
           <label>Phone</label>
