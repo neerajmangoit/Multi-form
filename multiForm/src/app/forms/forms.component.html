@@ -292,6 +292,7 @@
           type="button"
           class="btn btn-warning"
           mat-button
+          
           matStepperPrevious
         >
           Previous
@@ -304,6 +305,7 @@
       type="submit"
       name="submit"
       id="submit"
+      [disabled]="form.invalid" 
       value="Sign up"
       class="btn btn-primary align-right"
     />

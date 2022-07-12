@@ -45,27 +45,17 @@
         <label for="Gender">Gender:</label>
       </div>
 
-      <div class="form-check">
-        <label class="form-check-label" for="radio1">
+      <div class="form-check" *ngFor="let gender of genders">
+        <label class="form-check-label" for="radio">
         <input
           type="radio"
           class="form-check-input"
           name="gender"
-          id="radio1"
+          id="radio"
+          [value]="gender"
           [(ngModel)]="this.userInfoData['data'].firstForm.gender"
-          checked
-        />Male</label>
-      </div>
-      <div class="form-check">
-        <label class="form-check-label" for="radio2">
-        <input
-          type="radio"
-          class="form-check-input"
-          name="gender"
-          id="radio2"
-          [(ngModel)]="this.userInfoData['data'].firstForm.gender"
-        />Female
-       </label>
+          
+        />{{ gender }}</label>
       </div>
 
       <!-------------Date of birth filed------------->

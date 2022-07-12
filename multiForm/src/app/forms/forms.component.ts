@@ -15,7 +15,7 @@ export class FormsComponent implements OnInit {
   constructor(
     private _formDataService: FormDataService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) {}
   
   @ViewChild('form') form:NgForm;
@@ -95,8 +95,7 @@ export class FormsComponent implements OnInit {
   onSubmit(form: NgForm) {
     this._formDataService.getData(form.value);
     this.router.navigate(['/show'], { relativeTo: this.route });
-    console.log(form.value.firstForm.name);
-    
+    console.log(form.value.firstForm.name);    
   }
 
   onSelected() {}

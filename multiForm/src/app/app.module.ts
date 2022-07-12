@@ -15,6 +15,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { TemplateEditComponent } from './template-edit/template-edit.component';
 import { TypeCheckPipe } from './type-check.pipe';
 import { ShowDataReactComponent } from './show-data-react/show-data-react.component';
+import { HttpClientModule } from '@angular/common/http';
+
+import {MatFormFieldModule} from '@angular/material/form-field';
+
 
 const appRoutes:Routes = [
   { path:'edit', component: TemplateEditComponent },
@@ -41,8 +45,10 @@ const appRoutes:Routes = [
     NgMultiSelectDropDownModule.forRoot(),
     BrowserAnimationsModule,
     MatStepperModule,
+    MatFormFieldModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

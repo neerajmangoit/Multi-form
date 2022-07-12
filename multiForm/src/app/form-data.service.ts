@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -6,7 +7,7 @@ import { Injectable } from '@angular/core';
 
 export class FormDataService {
 
-  constructor() { }
+  constructor(private http:HttpClient) { }
 
   dataId;
 
@@ -20,6 +21,9 @@ export class FormDataService {
   { id: this.idval++, form: 'reactive', data: user }
   );
     console.log(this.userData);
+    this.http.post('https://shining-haiku-351209-default-rtdb.firebaseio.com/users.json', this.userData).subscribe(responseData => {
+      console.log(responseData);
+    });
   }
 
 
