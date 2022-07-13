@@ -50,10 +50,12 @@ export class ReactiveFormComponent implements OnInit {
         profession: new FormControl(null),
         description: new FormControl(null, [Validators.required]),
         contactPerson: new FormArray([
-          new FormControl()
+          new FormGroup({contactPersonName : new FormControl(),
+            contactPersonPhone: new FormControl()})
         ]),
       }),
     });
+
 
     this.dropdownList = [
       { item_id: 1, item_text: 'Phd' },
@@ -66,6 +68,8 @@ export class ReactiveFormComponent implements OnInit {
       idField: 'item_id',
       textField: 'item_text',
     };
+
+    console.log(this.control);
   }
 
   dropdownList = [];
@@ -94,6 +98,13 @@ export class ReactiveFormComponent implements OnInit {
     },
   ];
 
+
+  get control(){
+    return (<FormArray> this.myform.get('thirdForm.contactPerson')).controls;
+    
+  }
+
+
   hobbySelect(event) {
     const selectedHobby = this.myform.get('secondForm.hobbies') as FormArray;
     if (event.target.checked) {
@@ -110,17 +121,35 @@ export class ReactiveFormComponent implements OnInit {
     },
   ];
 
+  // ContactPerson = [
+  //   {contactPersonName : new FormControl(),
+  //   contactPersonPhone: new FormControl()}
+  // ]
+
   addPerson() {
     this.persons.push({
       id: this.persons.length + 1,
       name: '',
       phone: '',
     });
+    (<FormArray> this.myform.get('thirdForm.contactPerson')).push( new FormGroup({contactPersonName : new FormControl(),
+      contactPersonPhone: new FormControl()}))
   }
 
   removePerson(i: number) {
     this.persons.splice(i, 1);
   }
+  
+
+  // ContactPersonName = new FormControl();
+  // ContactPersonPhone = new FormControl();
+
+
+  // ContactPerson = [{
+  //   ContactPersonName:this.ContactPersonName, 
+  //   ContactPersonPhone:this.ContactPersonPhone
+  // }]
+    
 
   onSubmit() {
     this._formDataService.getData(this.myform.value);

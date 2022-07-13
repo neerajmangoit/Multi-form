@@ -32,6 +32,4 @@ export class DataShowComponent implements OnInit {
 
   }
 
-  
-
 }

@@ -13,7 +13,7 @@
           <th>Profession</th>
           <th>Description</th>
           <th>Hobbies</th>
-          <th colspan="2" class="table-active">Contact person</th>
+          <th>Contact person</th>
           <th>Edit</th>
         </tr>
       </thead>
@@ -55,19 +55,11 @@
           </td>
           <td>
   
-              <div *ngFor="let contact of  userData.data.thirdForm.contactPerson | keyvalue">
-                <div *ngIf="">
-  
-                  {{ contact.value  }}
+              <div *ngFor="let contact of  userData.data.thirdForm.contactPerson">
+                <div>
+                  [{{ contact.contactPersonName }}|{{ contact.contactPersonPhone }}]
                 </div>
               </div>
-              
-          </td>
-          <td>
-            <div *ngFor="let contact of  userData.data.thirdForm.contactPerson | keyvalue">
-              {{ contact.value }}
-            </div>
-          </td>
           <td>
             <button
               class="btn btn-primary"

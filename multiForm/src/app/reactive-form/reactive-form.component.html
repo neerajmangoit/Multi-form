@@ -272,13 +272,15 @@
         Description is required
       </span>
 
-      <section *ngFor="let person of persons; let i = index">
+      <section *ngFor="let person of control; let i = index" formArrayName="contactPerson">
         <!-- input fields inside the *ngFor -->
-        <div class="col-4 d-inline-block" formArrayName="contactPerson">
+        <div [formGroupName]="i">
+        <div class="col-4 d-inline-block" >
           <label>Name</label>
           <input class="form-control" 
           type="text" 
-          name="name{{ i }}" 
+          name="contactPersonName" 
+          formControlName="contactPersonName"
           />
         </div>
         <div class="col-3 d-inline-block mx-4 my-3">
@@ -286,9 +288,11 @@
           <input
             type="phone"
             class="form-control"
-            name="phone{{ i }}"
+            name="contactPersonPhone"
+            formControlName="contactPersonPhone"
             pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
           />
+        </div>
         </div>
         <button type="button" class="btn btn-danger" (click)="removePerson(i)">
           Remove

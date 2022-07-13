@@ -13,8 +13,13 @@ export class ShowDataReactComponent implements OnInit {
   
   servisceData = [];
 
+  contactData;
+
   ngOnInit(): void {
     this.servisceData = this.userInfo.userData;
+
+    this.contactData = this.userInfo.userData['data'].thirdForm.contactPerson;
+
   }
 
   onEdit(id) {
